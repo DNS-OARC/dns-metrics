@@ -1,0 +1,155 @@
+{
+    "$id": "https://github.com/DNS-OARC/dns-metrics/dns-metrics.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "DNS Metrics",
+    "description": "A DNS metrics object",
+    "type": "object",
+    "properties": {
+        "runid": {
+            "description": "The unique id for a run",
+            "type": "string"
+        },
+        "threadid": {
+            "description": "The unique thread id within a run",
+            "type": "string"
+        },
+        "header": {
+            "description": "A header object that contains information on the schema version and parameters related to the run",
+            "type": "object",
+            "properties": {
+                "schema_version": {
+                    "description": "The DNS metrics schema version in the format YYYYMMDD",
+                    "type": "integer"
+                },
+                "merged": {
+                    "description": "",
+                    "type": "boolean"
+                },
+                "time_units_per_sec": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "generator": {
+                    "description": "",
+                    "type": "string"
+                },
+                "generator_params": {
+                    "description": "",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "generator_version": {
+                    "description": "",
+                    "type": "string"
+                },
+                "stats_interval": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "timeout": {
+                    "description": "",
+                    "type": "integer"
+                }
+            },
+            "required": [ "schema_version", "time_units_per_sec", "generator", "generator_version", "stats_interval" ]
+        },
+        "event": {
+            "description": "A generic event object for tools to give context on the run",
+            "type": "object",
+            "properties": {
+                "msg": {
+                    "description": "",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "",
+                    "type": "string"
+                }
+            },
+            "required": [ "msg" ]
+        },
+        "stats": {
+            "description": "A stats object with the metrics",
+            "type": "object",
+            "properties": {
+                "since": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "until": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "summary": {
+                    "description": "",
+                    "type": "boolean"
+                },
+                "requests": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "answers": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "timeouts": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "interrupted": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "unexpected": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "responses": {
+                    "description": "",
+                    "type": "object",
+                    "patternProperties": {
+                        "^\\W+$": {
+                            "description": "",
+                            "type": "integer"
+                        }
+                    }
+                },
+                "answer_latency": {
+                    "description": "",
+                    "type": "object",
+                    "properties": {
+                        "avg": {
+                            "description": "",
+                            "type": "integer"
+                        },
+                        "min": {
+                            "description": "",
+                            "type": "integer"
+                        },
+                        "max": {
+                            "description": "",
+                            "type": "integer"
+                        },
+                        "stddev": {
+                            "description": "",
+                            "type": "integer"
+                        },
+                        "buckets": {
+                            "description": "",
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                  }
+            },
+            "required": [ "since", "until" ]
+        }
+    },
+    "required": [ "runid" ]
+}
