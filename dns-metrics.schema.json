@@ -12,7 +12,36 @@
         "threadid": {
             "description": "The unique thread id within a run",
             "type": "string"
+        }
+    },
+    "required": [ "runid" ],
+    "oneOf": [
+        {
+            "properties": {
+                "type": { "const": "header" }
+            },
+            "$ref": "#/$defs/header"
         },
+        {
+            "properties": {
+                "type": { "const": "event" }
+            },
+            "$ref": "#/$defs/event"
+        },
+        {
+            "properties": {
+                "type": { "const": "stat_periodic" }
+            },
+            "$ref": "#/$defs/stats"
+        },
+        {
+            "properties": {
+                "type": { "const": "stat_sum" }
+            },
+            "$ref": "#/$defs/stats"
+        }
+    ],
+    "$defs": {
         "header": {
             "description": "A header object that contains information on the schema version and parameters related to the run",
             "type": "object",
@@ -63,7 +92,7 @@
                     "description": "",
                     "type": "string"
                 },
-                "type": {
+                "msg_type": {
                     "description": "",
                     "type": "string"
                 }
@@ -81,10 +110,6 @@
                 "until": {
                     "description": "",
                     "type": "integer"
-                },
-                "summary": {
-                    "description": "",
-                    "type": "boolean"
                 },
                 "requests": {
                     "description": "",
@@ -146,10 +171,10 @@
                                 }
                             }
                         }
-                  }
+                    }
+                }
             },
             "required": [ "since", "until" ]
         }
-    },
-    "required": [ "runid" ]
+    }
 }

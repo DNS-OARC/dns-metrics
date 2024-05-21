@@ -1,0 +1,12 @@
+{
+    "runid": "1",
+    "type": "header",
+    "schema_version": 20221207,
+    "merged": true,
+    "time_units_per_sec": 1000000,
+    "generator": "dnsperf",
+    "generator_params": ["-Q", "1000"],
+    "generator_version": "2.10.0",
+    "stats_interval": 1000000,
+    "timeout": 1000000
+}

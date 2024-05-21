@@ -1,0 +1,6 @@
+{
+    "runid": "1",
+    "type": "event",
+    "msg": "whatever text",
+    "msg_type": "optional"
+}

@@ -1,0 +1,33 @@
+{
+    "runid": "1",
+    "type": "stat_sum",
+    "since": 1675865567760972,
+    "until": 1675865568761088,
+    "summary": true,
+    "requests": 28659,
+    "answers": 28651,
+    "timeouts": 0,
+    "interrupted": 0,
+    "unexpected": 0,
+    "responses": {
+        "NOERROR": 28651
+    },
+    "answer_latency": {
+        "avg": 126,
+        "min": 43,
+        "max": 3967,
+        "stddev": 113,
+        "buckets": [
+            [
+                1,
+                2,
+                100
+            ],
+            [
+                3904,
+                3967,
+                1
+            ]
+        ]
+    }
+}
