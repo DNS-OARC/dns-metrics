@@ -1,18 +1,18 @@
 {
     "runid": "1",
     "threadid": "1",
-    "type": "stat_periodic",
+    "type": "stats_periodic",
     "since": 1675865567760972,
     "until": 1675865568761088,
-    "requests": 28659,
-    "answers": 28651,
+    "queries": 28659,
+    "responses": 28651,
     "timeouts": 0,
     "interrupted": 0,
     "unexpected": 0,
-    "responses": {
+    "response_rcodes": {
         "NOERROR": 28651
     },
-    "answer_latency": {
+    "response_latency": {
         "avg": 126,
         "min": 43,
         "max": 3967,
