@@ -30,13 +30,13 @@
         },
         {
             "properties": {
-                "type": { "const": "stat_periodic" }
+                "type": { "const": "stats_periodic" }
             },
             "$ref": "#/$defs/stats"
         },
         {
             "properties": {
-                "type": { "const": "stat_sum" }
+                "type": { "const": "stats_sum" }
             },
             "$ref": "#/$defs/stats"
         }
@@ -50,50 +50,46 @@
                     "description": "The DNS metrics schema version in the format YYYYMMDD",
                     "type": "integer"
                 },
-                "merged": {
-                    "description": "",
-                    "type": "boolean"
-                },
-                "time_units_per_sec": {
-                    "description": "",
-                    "type": "integer"
-                },
                 "generator": {
-                    "description": "",
+                    "description": "The name of the software that generated this output",
+                    "type": "string"
+                },
+                "generator_version": {
+                    "description": "The version of the software",
                     "type": "string"
                 },
                 "generator_params": {
-                    "description": "",
+                    "description": "Any parameters that was given to the software",
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
                 },
-                "generator_version": {
-                    "description": "",
-                    "type": "string"
+                "time_units_per_sec": {
+                    "description": "??TODO??",
+                    "type": "integer"
                 },
                 "stats_interval": {
-                    "description": "",
-                    "type": "integer"
+                    "description": "The frequency of stats objects in this file, in fractional seconds",
+                    "type": "number"
                 },
                 "timeout": {
-                    "description": "",
-                    "type": "integer"
+                    "description": "The network timeout used in the generator, in fractional seconds",
+                    "type": "number"
                 }
             },
-            "required": [ "schema_version", "time_units_per_sec", "generator", "generator_version", "stats_interval" ]
+            "required": [ "schema_version", "generator", "generator_version", "stats_interval" ]
         },
         "event": {
             "description": "A generic event object for tools to give context on the run",
             "type": "object",
             "properties": {
                 "msg": {
-                    "description": "",
+                    "description": "The message about the event",
                     "type": "string"
                 },
                 "msg_type": {
-                    "description": "",
+                    "description": "The type of message",
                     "type": "string"
                 }
             },
@@ -104,65 +100,65 @@
             "type": "object",
             "properties": {
                 "since": {
-                    "description": "",
+                    "description": "The starting time for when the metrics of this object was gathered, in nanoseconds since 1970-01-01 00:00:00 UTC",
                     "type": "integer"
                 },
                 "until": {
-                    "description": "",
+                    "description": "The ending time for when the metrics of this object was gathered, in nanoseconds since 1970-01-01 00:00:00 UTC",
                     "type": "integer"
                 },
-                "requests": {
-                    "description": "",
-                    "type": "integer"
-                },
-                "answers": {
-                    "description": "",
-                    "type": "integer"
-                },
-                "timeouts": {
-                    "description": "",
-                    "type": "integer"
-                },
-                "interrupted": {
-                    "description": "",
-                    "type": "integer"
-                },
-                "unexpected": {
-                    "description": "",
+                "queries": {
+                    "description": "The number of DNS queries",
                     "type": "integer"
                 },
                 "responses": {
-                    "description": "",
+                    "description": "The number of DNS responses",
+                    "type": "integer"
+                },
+                "timeouts": {
+                    "description": "The number of DNS queries that timed out",
+                    "type": "integer"
+                },
+                "interrupted": {
+                    "description": "The number of DNS queries and/or responses that was interrupted",
+                    "type": "integer"
+                },
+                "unexpected": {
+                    "description": "The number of DNS queries and/or responses that was unexpected",
+                    "type": "integer"
+                },
+                "response_rcodes": {
+                    "description": "The number of different RCODEs as an object with the RCODE as a property",
                     "type": "object",
                     "patternProperties": {
                         "^\\W+$": {
-                            "description": "",
+                            "description": "The number of responses for a specific RCODE",
                             "type": "integer"
                         }
                     }
                 },
-                "answer_latency": {
-                    "description": "",
+                "response_latency": {
+                    "description": "The latency metrics for responses to queries",
                     "type": "object",
                     "properties": {
                         "avg": {
-                            "description": "",
+                            "description": "The average latency for a response to a query, in nanoseconds",
                             "type": "integer"
                         },
                         "min": {
-                            "description": "",
+                            "description": "The minimum latency for a response to a query, in nanoseconds",
                             "type": "integer"
                         },
                         "max": {
-                            "description": "",
+                            "description": "The maximum latency for a response to a query, in nanoseconds",
                             "type": "integer"
                         },
                         "stddev": {
-                            "description": "",
+                            "description": "The standard deviation for latency, in nanoseconds",
                             "type": "integer"
                         },
                         "buckets": {
-                            "description": "",
+                            "description": "??TODO??",
                             "type": "array",
                             "items": {
                                 "type": "array",
