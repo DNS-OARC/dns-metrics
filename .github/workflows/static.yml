@@ -35,7 +35,8 @@ jobs:
         run: |
           pip install json-schema-for-humans
           mkdir pages
-          generate-schema-doc dns-metrics.schema.json pages      
+          generate-schema-doc dns-metrics.schema.json pages
+          ( cd pages; ln -s dns-metrics.schema.html index.html )
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
