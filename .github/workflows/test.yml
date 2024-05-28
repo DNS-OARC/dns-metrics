@@ -1,0 +1,14 @@
+name: test
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Install
+      run: pip install check-jsonschema
+    - name: Test
+      run: |
+        cd examples
+        ./test.sh
