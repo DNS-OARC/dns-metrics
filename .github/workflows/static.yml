@@ -31,18 +31,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build
-        run: |
-          pip install json-schema-for-humans
-          mkdir pages
-          generate-schema-doc dns-metrics.schema.json pages
-          ( cd pages; ln -s dns-metrics.schema.html index.html )
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Build
+        run: |
+          npm install wetzel
+          npx wetzel dns-metrics.schema.json > SCHEMA.md
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: "pages"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

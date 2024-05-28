@@ -3,6 +3,12 @@
 A JSON schema to define DNS metrics that tools can use to generate compatible
 JSON metrics and statistics.
 
+## Documentation
+
+[Documentation](SCHEMA.md) is generated automatically with [wetzel](https://www.npmjs.com/package/wetzel)
+but please note that it does not handle everything correctly, for example
+the oneOf `"type": "..."` is currently not displayed correctly.
+
 ## Test
 
 ```
