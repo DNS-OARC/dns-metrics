@@ -43,6 +43,7 @@
     ],
     "$defs": {
         "header": {
+            "title": "DNS Metric Header",
             "description": "A header object that contains information on the schema version and parameters related to the run",
             "type": "object",
             "properties": {
@@ -81,6 +82,7 @@
             "required": [ "schema_version", "generator", "generator_version", "stats_interval" ]
         },
         "event": {
+            "title": "DNS Metric Event",
             "description": "A generic event object for tools to give context on the run",
             "type": "object",
             "properties": {
@@ -96,6 +98,7 @@
             "required": [ "msg" ]
         },
         "stats": {
+            "title": "DNS Metric Stats",
             "description": "A stats object with the metrics",
             "type": "object",
             "properties": {
