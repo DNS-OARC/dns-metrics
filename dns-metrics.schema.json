@@ -175,9 +175,160 @@
                             }
                         }
                     }
+                },
+                "conn_info": {
+                    "$ref": "#/$defs/conn_info"
                 }
             },
             "required": [ "since", "until" ]
+        },
+        "udp_conn": {
+            "title": "DNS Metric UDP Connection Information",
+            "description": "An object with the metrics around the UDP connections used to sent and received for the given stats object",
+            "type": "object",
+            "properties": {
+                "packets_sent": {
+                    "description": "The number of packets sent",
+                    "type": "integer"
+                },
+                "packets_received": {
+                    "description": "The number of packets received",
+                    "type": "integer"
+                },
+                "socket_errors": {
+                    "description": "The number of various socket errors that occurred",
+                    "type": "integer"
+                }
+            }
+        },
+        "tcp_conn": {
+            "$ref": "#/$defs/udp_conn",
+            "title": "DNS Metric TCP Connection Information",
+            "description": "An object with the metrics around the TCP connections used to sent and received for the given stats object",
+            "properties": {
+                "handshakes": {
+                    "description": "The number of handshakes performed",
+                    "type": "integer"
+                },
+                "handshakes_failed": {
+                    "description": "The number of failed handshakes",
+                    "type": "integer"
+                }
+            }
+        },
+        "conn_latency_stats": {
+            "type": "object",
+            "properties": {
+                "avg": {
+                    "description": "The average latency, in nanoseconds",
+                    "type": "integer"
+                },
+                "min": {
+                    "description": "The minimum latency, in nanoseconds",
+                    "type": "integer"
+                },
+                "max": {
+                    "description": "The maximum latency, in nanoseconds",
+                    "type": "integer"
+                },
+                "stddev": {
+                    "description": "The standard deviation for latency, in nanoseconds",
+                    "type": "integer"
+                },
+                "buckets": {
+                    "description": "??TODO??",
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "conn_latency": {
+            "title": "DNS Metric Connection Latency",
+            "description": "An object with the metrics around connection latency used for the given connection information object",
+            "type": "object",
+            "properties": {
+                "initial": {
+                    "description": "Latency within the handshake, from the initial packet sent to the first reaction received",
+                    "$ref": "#/$defs/conn_latency_stats"
+                },
+                "handshake": {
+                    "description": "Latency from the initial packet to the handshake completion",
+                    "$ref": "#/$defs/conn_latency_stats"
+                },
+                "connection": {
+                    "description": "Latency from the initial packet sent to the connection closed, timed outed, failed or abandoned",
+                    "$ref": "#/$defs/conn_latency_stats"
+                }
+            }
+        },
+        "conn_resumption": {
+            "title": "DNS Metric Connection Resumption",
+            "description": "An object with the metrics around connection resumption used for the given connection information object",
+            "type": "object",
+            "properties": {
+                "initialized": {
+                    "description": "The number of attempted resumptions",
+                    "type": "integer"
+                },
+                "established": {
+                    "description": "The number of resumptions handshakes completed",
+                    "type": "integer"
+                },
+                "fallbacks": {
+                    "description": "The number of resumptions denied by counterpart",
+                    "type": "integer"
+                }
+            }
+        },
+        "tls_conn": {
+            "$ref": "#/$defs/tcp_conn",
+            "title": "DNS Metric TLS Connection Information",
+            "description": "An object with the metrics around the TLS connections used to sent and received for the given stats object",
+            "properties": {
+                "resumption": {
+                    "$ref": "#/$defs/conn_resumption"
+                }
+            }
+        },
+        "quic_conn": {
+            "$ref": "#/$defs/tls_conn",
+            "title": "DNS Metric QUIC Connection Information",
+            "description": "An object with the metrics around the QUIC connections used to sent and received for the given stats object",
+            "properties": {
+            }
+        },
+        "conn_info": {
+            "oneOf": [
+                {
+                    "properties": {
+                        "type": { "const": "udp" }
+                    },
+                    "$ref": "#/$defs/udp_conn"
+                },
+                {
+                    "properties": {
+                        "type": { "const": "tcp" }
+                    },
+                    "$ref": "#/$defs/tcp_conn"
+                },
+                {
+                    "properties": {
+                        "type": { "const": "tls_conn" }
+                    },
+                    "$ref": "#/$defs/tls_conn"
+                },
+                {
+                    "properties": {
+                        "type": { "const": "quic_conn" }
+                    },
+                    "$ref": "#/$defs/quic_conn"
+                }
+            ]
         }
     }
 }
