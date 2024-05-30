@@ -217,6 +217,7 @@
             }
         },
         "conn_latency_stats": {
+            "title": "DNS Metric Connection Latency Stats",
             "type": "object",
             "properties": {
                 "avg": {
@@ -303,6 +304,7 @@
             }
         },
         "conn_info": {
+            "title": "DNS Metric Connection Information",
             "oneOf": [
                 {
                     "properties": {
