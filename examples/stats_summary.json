@@ -8,6 +8,9 @@
     "timeouts": 0,
     "interrupted": 0,
     "unexpected": 0,
+    "discarded": {
+        "queries": 100
+    },
     "response_rcodes": {
         "NOERROR": 28651
     },
