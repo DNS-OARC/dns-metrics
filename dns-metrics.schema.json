@@ -6,11 +6,11 @@
     "type": "object",
     "properties": {
         "runid": {
-            "description": "The unique id for a run",
+            "description": "The unique id for a run, used to correlate all objects to the same run",
             "type": "string"
         },
-        "threadid": {
-            "description": "The unique thread id within a run",
+        "subid": {
+            "description": "The unique id within a run, used to differentiate for example individual threads or streams within the run",
             "type": "string"
         }
     },
@@ -99,7 +99,7 @@
         },
         "stats": {
             "title": "DNS Metric Stats",
-            "description": "A stats object with the metrics",
+            "description": "A stats object with the metrics around the DNS that was sent and received during the run",
             "type": "object",
             "properties": {
                 "since": {
@@ -128,6 +128,10 @@
                 },
                 "unexpected": {
                     "description": "The number of DNS queries and/or responses that was unexpected",
+                    "type": "integer"
+                },
+                "discarded": {
+                    "description": "The number of DNS queries and/or responses that was discarded",
                     "type": "integer"
                 },
                 "response_rcodes": {
