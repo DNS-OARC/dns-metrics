@@ -97,6 +97,26 @@
             },
             "required": [ "msg" ]
         },
+        "queries_responses_obj": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "queries": {
+                            "description": "The number of DNS queries",
+                            "type": "integer"
+                        },
+                        "responses": {
+                            "description": "The number of DNS responses",
+                            "type": "integer"
+                        }
+                    }
+                },
+                {
+                    "type": "integer"
+                }
+            ]
+        },
         "stats": {
             "title": "DNS Metric Stats",
             "description": "A stats object with the metrics around the DNS that was sent and received during the run",
@@ -110,29 +130,29 @@
                     "description": "The ending time for when the metrics of this object was gathered, in nanoseconds since 1970-01-01 00:00:00 UTC",
                     "type": "integer"
                 },
-                "queries": {
-                    "description": "The number of DNS queries",
-                    "type": "integer"
+                "sent": {
+                    "$ref": "#/$defs/queries_responses_obj",
+                    "description": "The number of DNS queries and/or responses sent"
                 },
-                "responses": {
-                    "description": "The number of DNS responses",
-                    "type": "integer"
+                "received": {
+                    "$ref": "#/$defs/queries_responses_obj",
+                    "description": "The number of DNS queries and/or responses received"
                 },
                 "timeouts": {
-                    "description": "The number of DNS queries that timed out",
-                    "type": "integer"
+                    "$ref": "#/$defs/queries_responses_obj",
+                    "description": "The number of DNS queries and/or responses that timed out"
                 },
                 "interrupted": {
-                    "description": "The number of DNS queries and/or responses that was interrupted",
-                    "type": "integer"
+                    "$ref": "#/$defs/queries_responses_obj",
+                    "description": "The number of DNS queries and/or responses that was interrupted"
                 },
                 "unexpected": {
-                    "description": "The number of DNS queries and/or responses that was unexpected",
-                    "type": "integer"
+                    "$ref": "#/$defs/queries_responses_obj",
+                    "description": "The number of DNS queries and/or responses that was unexpected"
                 },
                 "discarded": {
-                    "description": "The number of DNS queries and/or responses that was discarded",
-                    "type": "integer"
+                    "$ref": "#/$defs/queries_responses_obj",
+                    "description": "The number of DNS queries and/or responses that was discarded"
                 },
                 "response_rcodes": {
                     "description": "The number of different RCODEs as an object with the RCODE as a property",
