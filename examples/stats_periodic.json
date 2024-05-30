@@ -29,5 +29,10 @@
                 1
             ]
         ]
+    },
+    "conn_info": {
+        "type": "udp",
+        "packets_sent": 100,
+        "packets_received": 100
     }
 }
