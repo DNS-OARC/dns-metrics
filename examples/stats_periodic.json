@@ -4,11 +4,16 @@
     "type": "stats_periodic",
     "since": 1675865567760972,
     "until": 1675865568761088,
-    "queries": 28659,
-    "responses": 28651,
+    "sent": {
+        "queries": 28659
+    },
+    "received": {
+        "responses": 28651
+    },
     "timeouts": 0,
     "interrupted": 0,
     "unexpected": 0,
+    "discarded": 0,
     "response_rcodes": {
         "NOERROR": 28651
     },
